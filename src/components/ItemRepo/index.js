@@ -1,7 +1,12 @@
 import React from 'react'
 
 import { ItemContainer } from './styles'
-function ItemRepo({repo}) {
+function ItemRepo({ repo, onRemove }) {
+  const handleRemove = (e) => {
+    e.preventDefault();
+    onRemove(repo.id);
+  }
+
   return (
     <ItemContainer>
       <h3>{repo.name}</h3>
@@ -10,7 +15,7 @@ function ItemRepo({repo}) {
       <p>Linguagem: {repo.language}</p>
       <p>Tópicos: {repo.topics.join(', ')}</p>
       <a href={repo.html_url} target='_blank' rel="noopener noreferrer">Ver repositório</a><br />
-      <a href="#" className="remover">Remover</a>
+      <a href="#" className="remover" onClick={handleRemove}>Remover</a>
     </ItemContainer>
   )
 }
